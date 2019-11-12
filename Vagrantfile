@@ -21,11 +21,11 @@ Vagrant.configure("2") do |config|
 
 # Script to run when the server is created
  config.vm.provision "shell", inline: <<-SHELL
-   systemctl disable apt-daily.service
-   systemctl disable apt-daily.timer
+   systemctl disable apt-daily.service    # disable auto update
+   systemctl disable apt-daily.timer      # disable auto update
 
-   sudo apt-get update
-   sudo apt-get install -y python3-venv zip
+   sudo apt-get update  # update loccal repository with all available pacckages
+   sudo apt-get install -y python3-venv zip  # install python3
    touch /home/vagrant/.bash_aliases
    if ! grep -q PYTHON_ALIAS_ADDED /home/vagrant/.bash_aliases; then
      echo "# PYTHON_ALIAS_ADDED" >> /home/vagrant/.bash_aliases
